@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will Keller – Research Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Link to external CSS (create styles.css later) -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">Toggle Theme</button>
+        </li>
+      </ul>
+    </nav>
+    <h1>Will Keller</h1>
+    <p>Highschooler</p>
+    <a id="download-cv" href="files/Will_Keller_CV.pdf" download>Download CV</a>
+  </header>
+
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>Welcome! I'm a rising college freshman interested in biomedical imaging, microscopy, biomedical devices, diagnostics, and data analytics.</p>
+    </section>
+
+    <section id="news">
+      <h2>News & Updates</h2>
+      <ul>
+        <li>Cool thing (Dec 10546).</li>
+        <li>Presented at cool stuff (Jan 28025).</li>
+        <!-- Add your real updates here -->
+      </ul>
+      <button id="news-toggle">Show more</button>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <ul>
+        <!-- TODO: Update project link and description -->
+        <li><a href="https://github.com/wkeller25/morestuff">3D Retina Models</a> – Placeholder.</li>
+        <!-- Add more project links here -->
+      </ul>
+    </section>
+
+    <section id="research">
+      <h2>Publications & Research</h2>
+      <ul>
+        <li>
+          <a href="https://tvst.arvojournals.org/article.aspx?articleid=2802075" target="_blank" rel="noopener">
+            Method for Quantitative Analysis of Vitreoretinal Adhesion in Ex Vivo Model
+          </a>
+          – Tara Suresh, Lauren Ong, Christopher B. Marotta, Will Keller, Dan Schwartz, and Frank Brodie; <em>Translational Vision Science & Technology</em> 13(10):3, October 2024.
+        </li>
+        <li><a href="papers/paperstuff.pdf">Placeholder</a> – Placeholder.</li>
+        <!-- Add more publications here -->
+      </ul>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:yywillkeller@gmail.com">yywillkeller@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/willekeller" target="_blank" rel="noopener">linkedin.com/in/willekeller</a></p>
+    <p>GitHub: <a href="https://github.com/wkeller25" target="_blank" rel="noopener">https://github.com/wkeller25</a></p>
+  </footer>
+  <button id="back-to-top" aria-label="Back to top">↑</button>
+  <script>
+    (function() {
+      const body = document.body;
+      const toggle = document.getElementById('theme-toggle');
+      // Apply saved theme on load
+      if (localStorage.getItem('theme') === 'light') {
+        body.classList.add('light-theme');
+      }
+      // Toggle on button click
+      toggle.addEventListener('click', () => {
+        body.classList.toggle('light-theme');
+        const isLight = body.classList.contains('light-theme');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      });
+      // Back-to-top button functionality
+      const backToTop = document.getElementById('back-to-top');
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      // News & Updates "show more" functionality
+      const newsItems = document.querySelectorAll('#news ul li');
+      const newsToggle = document.getElementById('news-toggle');
+      if (newsItems.length > 5) {
+        newsItems.forEach((item, idx) => {
+          if (idx >= 5) item.classList.add('hidden');
+        });
+        newsToggle.style.display = 'inline-block';
+        newsToggle.addEventListener('click', () => {
+          const isCollapsed = newsItems[5].classList.contains('hidden');
+          newsItems.forEach((item, idx) => {
+            if (idx >= 5) {
+              item.classList.toggle('hidden', !isCollapsed);
+            }
+          });
+          newsToggle.textContent = isCollapsed ? 'Show less' : 'Show more';
+        });
+      } else {
+        newsToggle.style.display = 'none';
+      }
+    })();
+  </script>
+</body>
+</html>
